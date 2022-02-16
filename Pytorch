@@ -1,3 +1,4 @@
+from tkinter import Y
 import torch
 torch.tensor(1)
 
@@ -72,7 +73,7 @@ loss_function = torch.nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(),
 							lr = 1e-1,
 							weight_decay = 1e-8)
-epochs = 20
+epochs = 2
 outputs = []
 losses = []
 for epoch in range(epochs):
@@ -99,19 +100,20 @@ for epoch in range(epochs):
 	outputs.append((epochs, image, reconstructed))
 
 # Defining the Plot Style
+plt.clf()
 plt.style.use('fivethirtyeight')
 plt.xlabel('Iterations')
 plt.ylabel('Loss')
+tensor.detach().numpy()
+plt.savefig("loss.png")
 
-# Plotting the last 100 values
-def new_func(losses):
-	plt.plot(losses[-100:])
-for i, item in enumerate(image):
+# or i, item in enumerate(image):
 	
-# Reshape the array for plotting
-	item = item.reshape(-1, 28, 28)
-plt.imshow(item[0])
+# # Reshape the array for plotting
+# 	item = item.reshape(-1, 28, 28)
+# plt.imshow(item[0].detach().cpu().numpy())
 
-for i, item in enumerate(reconstructed):
-	item = item.reshape(-1, 28, 28)
-new_var = plt.imshow(item[0]) 
+# for i, item in enumerate(reconstructed):
+# 	item = item.reshape(-1, 28, 28)
+# new_var = plt.imshow(item[0].detach().cpu().numpy())
+#
